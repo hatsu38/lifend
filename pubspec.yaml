@@ -54,6 +54,13 @@ dev_dependencies:
   build_runner: ^2.5.4
   json_serializable: ^6.9.5
 
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  remove_alpha_ios: true
+  image_path: "lib/assets/lifend.png"
+  adaptive_icon_background: "#FFFFFF"
+  adaptive_icon_foreground: "lib/assets/lifend.png"
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 

@@ -27,6 +27,7 @@ class LifenedApp extends StatelessWidget {
         scaffoldBackgroundColor: AppColors.backgroundColor,
       ),
       home: const SplashScreen(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
