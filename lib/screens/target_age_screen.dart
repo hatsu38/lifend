@@ -98,7 +98,7 @@ class _TargetAgeScreenState extends State<TargetAgeScreen>
                     const SizedBox(height: 40),
                     
                     const Text(
-                      '🎯 人生の目標を決めよう！',
+                      '🎯 自分の寿命を設定しよう！',
                       style: TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.bold,
@@ -107,7 +107,7 @@ class _TargetAgeScreenState extends State<TargetAgeScreen>
                     ),
                     const SizedBox(height: 8),
                     const Text(
-                      '何歳まで生きたいですか？',
+                      '平均寿命を参考にするといいよ',
                       style: TextStyle(
                         fontSize: 16,
                         color: AppColors.textSecondary,
@@ -230,7 +230,7 @@ class _TargetAgeScreenState extends State<TargetAgeScreen>
         children: [
           TweenAnimationBuilder<int>(
             tween: IntTween(begin: 0, end: _targetAge),
-            duration: const Duration(milliseconds: 500),
+            duration: const Duration(milliseconds: 100),
             builder: (context, value, child) {
               return Text(
                 '$value歳',

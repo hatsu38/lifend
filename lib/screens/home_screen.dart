@@ -68,7 +68,6 @@ class _HomeScreenState extends State<HomeScreen>
         'months': '0',
         'weeks': '0',
         'days': '0',
-        'hours': '0'
       };
     }
 
@@ -87,7 +86,6 @@ class _HomeScreenState extends State<HomeScreen>
         'months': '0',
         'weeks': '0',
         'days': '0',
-        'hours': '0'
       };
     }
 
@@ -97,7 +95,6 @@ class _HomeScreenState extends State<HomeScreen>
       'months': numberFormat.format((difference.inDays / 30.44).floor()),
       'weeks': numberFormat.format((difference.inDays / 7).floor()),
       'days': numberFormat.format(difference.inDays),
-      'hours': numberFormat.format(difference.inHours),
     };
   }
 
@@ -125,7 +122,6 @@ class _HomeScreenState extends State<HomeScreen>
       {'value': timeLeft['months'], 'unit': 'ヶ月', 'emoji': '📅', 'color': const Color(0xFF9C27B0)},
       {'value': timeLeft['weeks'], 'unit': '週間', 'emoji': '📊', 'color': const Color(0xFFE91E63)},
       {'value': timeLeft['days'], 'unit': '日', 'emoji': '☀️', 'color': const Color(0xFFFF9800)},
-      {'value': timeLeft['hours'], 'unit': '時間', 'emoji': '⏰', 'color': const Color(0xFF4CAF50)},
     ];
 
     return Scaffold(
@@ -258,6 +254,7 @@ class _HomeScreenState extends State<HomeScreen>
                   child: Container(
                     margin: const EdgeInsets.all(40),
                     padding: const EdgeInsets.all(40),
+                    width: 300,
                     decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(30),
@@ -296,7 +293,7 @@ class _HomeScreenState extends State<HomeScreen>
                           child: Text(
                             '${data['value']}',
                             style: const TextStyle(
-                              fontSize: 64,
+                              fontSize: 56, // フォントサイズを調整
                               fontWeight: FontWeight.bold,
                               color: Colors.white,
                             ),
@@ -305,7 +302,7 @@ class _HomeScreenState extends State<HomeScreen>
                         Text(
                           '${data['unit']}',
                           style: TextStyle(
-                            fontSize: 28,
+                            fontSize: 24, // フォントサイズを調整
                             color: data['color'] as Color,
                             fontWeight: FontWeight.w600,
                           ),
