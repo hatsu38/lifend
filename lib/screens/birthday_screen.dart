@@ -253,6 +253,18 @@ class _BirthdayScreenState extends State<BirthdayScreen>
                     ),
                     
                     const Spacer(),
+
+                    // 戻るボタン
+                    TextButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      child: const Text(
+                        '戻る',
+                        style: TextStyle(color: AppColors.textSecondary),
+                      ),
+                    ),
+                    const SizedBox(height: 16), // ボタン間のスペース
                     
                     GradientButton(
                       text: '✨ カウントダウン開始！',
