@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:intl/intl.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:home_widget/home_widget.dart';
 import '../utils/constants.dart';
 import 'target_age_screen.dart';
 
@@ -90,12 +91,38 @@ class _HomeScreenState extends State<HomeScreen>
     }
 
     final numberFormat = NumberFormat('#,###', 'ja_JP');
-    return {
+    final result = {
       'years': numberFormat.format((difference.inDays / 365.25).floor()),
       'months': numberFormat.format((difference.inDays / 30.44).floor()),
       'weeks': numberFormat.format((difference.inDays / 7).floor()),
       'days': numberFormat.format(difference.inDays),
     };
+    
+    // ウィジェットにデータを送信
+    _updateWidget(result);
+    
+    return result;
+  }
+  
+  Future<void> _updateWidget(Map<String, dynamic> timeLeft) async {
+    try {
+      // ウィジェットにデータを保存
+      await HomeWidget.saveWidgetData<String>('years', timeLeft['years']);
+      await HomeWidget.saveWidgetData<String>('months', timeLeft['months']);
+      await HomeWidget.saveWidgetData<String>('weeks', timeLeft['weeks']);
+      await HomeWidget.saveWidgetData<String>('days', timeLeft['days']);
+      await HomeWidget.saveWidgetData<int>('targetAge', _targetAge ?? 0);
+      await HomeWidget.saveWidgetData<String>('lastUpdated', DateTime.now().toIso8601String());
+      
+      // ウィジェットを更新
+      await HomeWidget.updateWidget(
+        name: 'LifendWidget',
+        androidName: 'LifendWidget',
+        iOSName: 'LifendWidget',
+      );
+    } catch (e) {
+      print('ウィジェットの更新でエラーが発生しました: $e');
+    }
   }
 
   Future<void> _resetSettings() async {

@@ -52,5 +52,10 @@
 			<string>_dartobservatory._tcp</string>
 			<string>_flutter-devtools._tcp</string>
 	</array>
+	<key>com.apple.security.application-groups</key>
+	<array>
+		<string>group.lifend.homeWidget</string>
+		<string>group.lifend.widget</string>
+	</array>
 </dict>
 </plist>
