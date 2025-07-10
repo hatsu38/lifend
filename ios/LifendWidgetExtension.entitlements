@@ -5,7 +5,6 @@
 	<key>com.apple.security.application-groups</key>
 	<array>
 		<string>group.lifend.homeWidget</string>
-		<string>group.lifend.widget</string>
 	</array>
 </dict>
 </plist>
