@@ -164,9 +164,9 @@ class _HomeScreenState extends State<HomeScreen>
           child: Column(
             children: [
               _buildHeader(),
-              _buildMotivationalMessage(),
               _buildCountdownView(displayData),
               _buildPageIndicator(displayData.length),
+              _buildMotivationalMessage(),
             ],
           ),
         ),
@@ -279,17 +279,17 @@ class _HomeScreenState extends State<HomeScreen>
                 return Transform.scale(
                   scale: _currentIndex == index ? _pulseAnimation.value : 1.0,
                   child: Container(
-                    margin: const EdgeInsets.all(40),
-                    padding: const EdgeInsets.all(40),
-                    width: 300,
+                    margin: const EdgeInsets.all(30),
+                    padding: const EdgeInsets.all(30),
+                    width: 320,
                     decoration: BoxDecoration(
                       color: Colors.white,
-                      borderRadius: BorderRadius.circular(30),
+                      borderRadius: BorderRadius.circular(35),
                       boxShadow: [
                         BoxShadow(
-                          color: (data['color'] as Color).withOpacity(0.2),
-                          blurRadius: 30,
-                          offset: const Offset(0, 15),
+                          color: (data['color'] as Color).withOpacity(0.3),
+                          blurRadius: 35,
+                          offset: const Offset(0, 20),
                         ),
                       ],
                     ),
@@ -298,18 +298,18 @@ class _HomeScreenState extends State<HomeScreen>
                       children: [
                         Text(
                           data['emoji'] as String,
-                          style: const TextStyle(fontSize: 60),
+                          style: const TextStyle(fontSize: 50),
                         ),
-                        const SizedBox(height: 20),
+                        const SizedBox(height: 10),
                         Text(
                           'あと',
                           style: TextStyle(
-                            fontSize: 20,
+                            fontSize: 18,
                             color: Colors.grey[600],
                             fontWeight: FontWeight.w500,
                           ),
                         ),
-                        const SizedBox(height: 8),
+                        const SizedBox(height: 20),
                         ShaderMask(
                           shaderCallback: (bounds) => LinearGradient(
                             colors: [
@@ -317,21 +317,26 @@ class _HomeScreenState extends State<HomeScreen>
                               (data['color'] as Color).withOpacity(0.7),
                             ],
                           ).createShader(bounds),
-                          child: Text(
-                            '${data['value']}',
-                            style: const TextStyle(
-                              fontSize: 56, // フォントサイズを調整
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
+                          child: FittedBox(
+                            fit: BoxFit.scaleDown,
+                            child: Text(
+                              '${data['value']}',
+                              style: const TextStyle(
+                                fontSize: 80,
+                                fontWeight: FontWeight.w900,
+                                color: Colors.white,
+                                height: 1.0,
+                              ),
                             ),
                           ),
                         ),
+                        const SizedBox(height: 5),
                         Text(
                           '${data['unit']}',
                           style: TextStyle(
-                            fontSize: 24, // フォントサイズを調整
+                            fontSize: 30,
                             color: data['color'] as Color,
-                            fontWeight: FontWeight.w600,
+                            fontWeight: FontWeight.w700,
                           ),
                         ),
                       ],
