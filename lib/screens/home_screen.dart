@@ -104,6 +104,25 @@ class _HomeScreenState extends State<HomeScreen>
     return result;
   }
   
+  // 桁数に応じたフォントサイズを決定するメソッド
+  double _getFontSizeForDigitCount(String value) {
+    // カンマを除去して純粋な数字の桁数を取得
+    final digitCount = value.replaceAll(',', '').length;
+    
+    switch (digitCount) {
+      case 1:
+      case 2:
+        return 90; // 年（2桁）: より大きな文字サイズ
+      case 3:
+        return 75; // 月（3桁）: 中程度の文字サイズ
+      case 4:
+        return 65; // 週（4桁）: 小さめの文字サイズ
+      case 5:
+      default:
+        return 55; // 日（5桁以上）: 最小の文字サイズ
+    }
+  }
+  
   Future<void> _updateWidget(Map<String, dynamic> timeLeft) async {
     try {
       // ウィジェットにデータを保存
@@ -140,6 +159,7 @@ class _HomeScreenState extends State<HomeScreen>
       );
     }
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -206,25 +226,29 @@ class _HomeScreenState extends State<HomeScreen>
               ),
             ],
           ),
-          Container(
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(12),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withOpacity(0.1),
-                  blurRadius: 10,
-                  offset: const Offset(0, 2),
+          Row(
+            children: [
+              Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(12),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.1),
+                      blurRadius: 10,
+                      offset: const Offset(0, 2),
+                    ),
+                  ],
                 ),
-              ],
-            ),
-            child: IconButton(
-              icon: const Icon(
-                Icons.refresh_rounded,
-                color: AppColors.primaryColor,
+                child: IconButton(
+                  icon: const Icon(
+                    Icons.refresh_rounded,
+                    color: AppColors.primaryColor,
+                  ),
+                  onPressed: _showResetDialog,
+                ),
               ),
-              onPressed: _showResetDialog,
-            ),
+            ],
           ),
         ],
       ),
@@ -321,8 +345,8 @@ class _HomeScreenState extends State<HomeScreen>
                             fit: BoxFit.scaleDown,
                             child: Text(
                               '${data['value']}',
-                              style: const TextStyle(
-                                fontSize: 80,
+                              style: TextStyle(
+                                fontSize: _getFontSizeForDigitCount(data['value'] as String),
                                 fontWeight: FontWeight.w900,
                                 color: Colors.white,
                                 height: 1.0,

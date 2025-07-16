@@ -9,12 +9,7 @@
 /* Begin PBXBuildFile section */
 		03CE90792E1EC79A00ED3A65 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03CE90782E1EC79A00ED3A65 /* WidgetKit.framework */; };
 		03CE907B2E1EC79A00ED3A65 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03CE907A2E1EC79A00ED3A65 /* SwiftUI.framework */; };
-		03CE909C2E1EC7E600ED3A65 /* AppIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CE90942E1EC7E600ED3A65 /* AppIntent.swift */; };
-		03CE909D2E1EC7E600ED3A65 /* LifendWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CE90972E1EC7E600ED3A65 /* LifendWidget.swift */; };
-		03CE909E2E1EC7E600ED3A65 /* LifendWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CE90982E1EC7E600ED3A65 /* LifendWidgetBundle.swift */; };
-		03CE909F2E1EC7E600ED3A65 /* LifendWidgetControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CE90992E1EC7E600ED3A65 /* LifendWidgetControl.swift */; };
-		03CE90A02E1EC7E600ED3A65 /* LifendWidgetLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CE909A2E1EC7E600ED3A65 /* LifendWidgetLiveActivity.swift */; };
-		03CE90A12E1EC7E600ED3A65 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 03CE90952E1EC7E600ED3A65 /* Assets.xcassets */; };
+		03CE91A22E28087F00ED3A65 /* LifendWidgetExtension.appex in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 03CE90A92E1ED0E000ED3A65 /* LifendWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		0D0BF29F69FB9F50EBBFFBFE /* Pods_Runner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3707026AC7E821B42A5B6AD /* Pods_Runner.framework */; };
 		1498D2341E8E89220040F4C2 /* GeneratedPluginRegistrant.m in Sources */ = {isa = PBXBuildFile; fileRef = 1498D2331E8E89220040F4C2 /* GeneratedPluginRegistrant.m */; };
 		331C808B294A63AB00263BE5 /* RunnerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331C807B294A618700263BE5 /* RunnerTests.swift */; };
@@ -59,8 +54,9 @@
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
-			dstSubfolderSpec = 10;
+			dstSubfolderSpec = 13;
 			files = (
+				03CE91A22E28087F00ED3A65 /* LifendWidgetExtension.appex in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -70,13 +66,6 @@
 /* Begin PBXFileReference section */
 		03CE90782E1EC79A00ED3A65 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		03CE907A2E1EC79A00ED3A65 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
-		03CE90942E1EC7E600ED3A65 /* AppIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIntent.swift; sourceTree = "<group>"; };
-		03CE90952E1EC7E600ED3A65 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		03CE90962E1EC7E600ED3A65 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		03CE90972E1EC7E600ED3A65 /* LifendWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifendWidget.swift; sourceTree = "<group>"; };
-		03CE90982E1EC7E600ED3A65 /* LifendWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifendWidgetBundle.swift; sourceTree = "<group>"; };
-		03CE90992E1EC7E600ED3A65 /* LifendWidgetControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifendWidgetControl.swift; sourceTree = "<group>"; };
-		03CE909A2E1EC7E600ED3A65 /* LifendWidgetLiveActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifendWidgetLiveActivity.swift; sourceTree = "<group>"; };
 		03CE90A42E1EC8AC00ED3A65 /* Runner.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Runner.entitlements; sourceTree = "<group>"; };
 		03CE90A52E1EC8BA00ED3A65 /* LifendWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LifendWidgetExtension.entitlements; sourceTree = "<group>"; };
 		03CE90A92E1ED0E000ED3A65 /* LifendWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = LifendWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -109,6 +98,31 @@
 		F5E1678DE4620DC12A78A965 /* Pods_RunnerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RunnerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		03CE91A12E28080300ED3A65 /* Exceptions for "LifendWidget" folder in "LifendWidgetExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 03CE90762E1EC79A00ED3A65 /* LifendWidgetExtension */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		03CE91992E28080300ED3A65 /* LifendWidget */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				03CE91A12E28080300ED3A65 /* Exceptions for "LifendWidget" folder in "LifendWidgetExtension" target */,
+			);
+			explicitFileTypes = {
+			};
+			explicitFolders = (
+			);
+			path = LifendWidget;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
 /* Begin PBXFrameworksBuildPhase section */
 		03CE90742E1EC79A00ED3A65 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
@@ -139,20 +153,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		03CE909B2E1EC7E600ED3A65 /* LifendWidget */ = {
-			isa = PBXGroup;
-			children = (
-				03CE90942E1EC7E600ED3A65 /* AppIntent.swift */,
-				03CE90952E1EC7E600ED3A65 /* Assets.xcassets */,
-				03CE90962E1EC7E600ED3A65 /* Info.plist */,
-				03CE90972E1EC7E600ED3A65 /* LifendWidget.swift */,
-				03CE90982E1EC7E600ED3A65 /* LifendWidgetBundle.swift */,
-				03CE90992E1EC7E600ED3A65 /* LifendWidgetControl.swift */,
-				03CE909A2E1EC7E600ED3A65 /* LifendWidgetLiveActivity.swift */,
-			);
-			path = LifendWidget;
-			sourceTree = "<group>";
-		};
 		331C8082294A63A400263BE5 /* RunnerTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -182,7 +182,7 @@
 				331C8082294A63A400263BE5 /* RunnerTests */,
 				FD1D9263304BE4BB39AC6AD0 /* Pods */,
 				F023E6BB7C247D05C6538064 /* Frameworks */,
-				03CE909B2E1EC7E600ED3A65 /* LifendWidget */,
+				03CE91992E28080300ED3A65 /* LifendWidget */,
 			);
 			sourceTree = "<group>";
 		};
@@ -255,6 +255,9 @@
 			buildRules = (
 			);
 			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				03CE91992E28080300ED3A65 /* LifendWidget */,
 			);
 			name = LifendWidgetExtension;
 			productName = LifendWidgetExtension;
@@ -353,7 +356,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				03CE90A12E1EC7E600ED3A65 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -499,11 +501,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				03CE909C2E1EC7E600ED3A65 /* AppIntent.swift in Sources */,
-				03CE909D2E1EC7E600ED3A65 /* LifendWidget.swift in Sources */,
-				03CE909E2E1EC7E600ED3A65 /* LifendWidgetBundle.swift in Sources */,
-				03CE909F2E1EC7E600ED3A65 /* LifendWidgetControl.swift in Sources */,
-				03CE90A02E1EC7E600ED3A65 /* LifendWidgetLiveActivity.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
