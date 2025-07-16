@@ -8,17 +8,59 @@
 import WidgetKit
 import SwiftUI
 
-// より豊富なカラーパレット
+// ダークモード対応のカラーパレット
 struct AppColors {
     static let primaryColor = Color(red: 0.424, green: 0.388, blue: 1.0) // #6C63FF
     static let secondaryColor = Color(red: 0.612, green: 0.153, blue: 0.690) // #9C27B0
     static let accentColor = Color(red: 1.0, green: 0.647, blue: 0.0) // #FFA500
-    static let backgroundGradient = [
-        Color(red: 0.95, green: 0.95, blue: 0.97),
-        Color(red: 0.92, green: 0.92, blue: 0.96)
-    ]
+    
+    // ダークモード対応背景グラデーション
+    static func backgroundGradient(for colorScheme: ColorScheme) -> [Color] {
+        switch colorScheme {
+        case .dark:
+            return [
+                Color(red: 0.1, green: 0.1, blue: 0.12),
+                Color(red: 0.08, green: 0.08, blue: 0.1)
+            ]
+        case .light:
+            return [
+                Color(red: 0.95, green: 0.95, blue: 0.97),
+                Color(red: 0.92, green: 0.92, blue: 0.96)
+            ]
+        @unknown default:
+            return [
+                Color(red: 0.95, green: 0.95, blue: 0.97),
+                Color(red: 0.92, green: 0.92, blue: 0.96)
+            ]
+        }
+    }
+    
     static let primaryGradient = [primaryColor, secondaryColor]
     static let accentGradient = [accentColor, Color(red: 1.0, green: 0.4, blue: 0.4)]
+    
+    // ダークモード対応のカード背景色
+    static func cardBackground(for colorScheme: ColorScheme) -> Color {
+        switch colorScheme {
+        case .dark:
+            return Color(red: 0.15, green: 0.15, blue: 0.17).opacity(0.8)
+        case .light:
+            return Color.white.opacity(0.7)
+        @unknown default:
+            return Color.white.opacity(0.7)
+        }
+    }
+    
+    // ダークモード対応のセカンダリテキストカラー
+    static func secondaryText(for colorScheme: ColorScheme) -> Color {
+        switch colorScheme {
+        case .dark:
+            return Color(red: 0.7, green: 0.7, blue: 0.7)
+        case .light:
+            return Color.secondary
+        @unknown default:
+            return Color.secondary
+        }
+    }
 }
 
 // 表示設定構造体
@@ -139,13 +181,14 @@ struct SimpleEntry: TimelineEntry {
 
 struct LifendWidgetEntryView : View {
     var entry: Provider.Entry
+    @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
         GeometryReader { geometry in
             ZStack {
-                // 背景グラデーション
+                // ダークモード対応背景グラデーション
                 LinearGradient(
-                    colors: AppColors.backgroundGradient,
+                    colors: AppColors.backgroundGradient(for: colorScheme),
                     startPoint: .topLeading,
                     endPoint: .bottomTrailing
                 )
@@ -185,7 +228,7 @@ struct LifendWidgetEntryView : View {
             VStack(alignment: .leading, spacing: 2) {
                 Text("\(entry.targetAge)歳まであと")
                     .font(.system(size: 11, weight: .medium))
-                    .foregroundColor(.secondary)
+                    .foregroundColor(AppColors.secondaryText(for: colorScheme))
             }
             
             Spacer()
@@ -238,7 +281,7 @@ struct LifendWidgetEntryView : View {
                 
                 Text(config.unit)
                     .font(.system(size: isSmall ? 18 : 24, weight: .bold))
-                    .foregroundColor(.secondary)
+                    .foregroundColor(AppColors.secondaryText(for: colorScheme))
                     .baselineOffset(-4)
                 
                 Spacer() // 右側のスペーサー
@@ -254,35 +297,35 @@ struct LifendWidgetEntryView : View {
             switch entry.displayType {
             case .days:
                 // 表示タイプが「日」の場合：年、月、週を表示（日は除く）
-                DetailInfoItem(value: entry.years, unit: "年", color: AppColors.primaryColor)
-                DetailInfoItem(value: entry.months, unit: "月", color: AppColors.secondaryColor)
-                DetailInfoItem(value: entry.weeks, unit: "週", color: AppColors.accentColor)
+                DetailInfoItem(value: entry.years, unit: "年", color: AppColors.primaryColor, colorScheme: colorScheme)
+                DetailInfoItem(value: entry.months, unit: "月", color: AppColors.secondaryColor, colorScheme: colorScheme)
+                DetailInfoItem(value: entry.weeks, unit: "週", color: AppColors.accentColor, colorScheme: colorScheme)
                 
             case .weeks:
                 // 表示タイプが「週」の場合：年、月、日を表示（週は除く）
-                DetailInfoItem(value: entry.years, unit: "年", color: AppColors.primaryColor)
-                DetailInfoItem(value: entry.months, unit: "月", color: AppColors.secondaryColor)
-                DetailInfoItem(value: entry.days, unit: "日", color: AppColors.accentColor)
+                DetailInfoItem(value: entry.years, unit: "年", color: AppColors.primaryColor, colorScheme: colorScheme)
+                DetailInfoItem(value: entry.months, unit: "月", color: AppColors.secondaryColor, colorScheme: colorScheme)
+                DetailInfoItem(value: entry.days, unit: "日", color: AppColors.accentColor, colorScheme: colorScheme)
                 
             case .months:
                 // 表示タイプが「月」の場合：年、週、日を表示（月は除く）
-                DetailInfoItem(value: entry.years, unit: "年", color: AppColors.primaryColor)
-                DetailInfoItem(value: entry.weeks, unit: "週", color: AppColors.secondaryColor)
-                DetailInfoItem(value: entry.days, unit: "日", color: AppColors.accentColor)
+                DetailInfoItem(value: entry.years, unit: "年", color: AppColors.primaryColor, colorScheme: colorScheme)
+                DetailInfoItem(value: entry.weeks, unit: "週", color: AppColors.secondaryColor, colorScheme: colorScheme)
+                DetailInfoItem(value: entry.days, unit: "日", color: AppColors.accentColor, colorScheme: colorScheme)
                 
             case .years:
                 // 表示タイプが「年」の場合：月、週、日を表示（年は除く）
-                DetailInfoItem(value: entry.months, unit: "月", color: AppColors.primaryColor)
-                DetailInfoItem(value: entry.weeks, unit: "週", color: AppColors.secondaryColor)
-                DetailInfoItem(value: entry.days, unit: "日", color: AppColors.accentColor)
+                DetailInfoItem(value: entry.months, unit: "月", color: AppColors.primaryColor, colorScheme: colorScheme)
+                DetailInfoItem(value: entry.weeks, unit: "週", color: AppColors.secondaryColor, colorScheme: colorScheme)
+                DetailInfoItem(value: entry.days, unit: "日", color: AppColors.accentColor, colorScheme: colorScheme)
             }
         }
         .padding(.horizontal, 12)
         .padding(.vertical, 8)
         .background(
             RoundedRectangle(cornerRadius: 12)
-                .fill(Color.white.opacity(0.7))
-                .shadow(color: Color.black.opacity(0.1), radius: 4, x: 0, y: 2)
+                .fill(AppColors.cardBackground(for: colorScheme))
+                .shadow(color: Color.black.opacity(colorScheme == .dark ? 0.2 : 0.1), radius: 4, x: 0, y: 2)
         )
     }
     
@@ -302,7 +345,7 @@ struct LifendWidgetEntryView : View {
         .padding()
         .background(
             RoundedRectangle(cornerRadius: 16)
-                .fill(Color.white.opacity(0.8))
+                .fill(AppColors.cardBackground(for: colorScheme))
                 .shadow(color: AppColors.accentColor.opacity(0.3), radius: 8, x: 0, y: 4)
         )
     }
@@ -318,6 +361,7 @@ struct DetailInfoItem: View {
     let value: String
     let unit: String
     let color: Color
+    let colorScheme: ColorScheme
     
     var body: some View {
         HStack(spacing: 2) {
@@ -329,7 +373,7 @@ struct DetailInfoItem: View {
             
             Text(unit)
                 .font(.system(size: 11, weight: .medium))
-                .foregroundColor(.secondary)
+                .foregroundColor(AppColors.secondaryText(for: colorScheme))
         }
         .frame(maxWidth: .infinity)
     }
