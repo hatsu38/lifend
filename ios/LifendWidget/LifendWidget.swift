@@ -117,10 +117,17 @@ struct LifendWidget: Widget {
     let kind: String = "LifendWidget"
 
     var body: some WidgetConfiguration {
-        AppIntentConfiguration(kind: kind, intent: ConfigurationAppIntent.self, provider: Provider()) { entry in
-            LifendWidgetEntryView(entry: entry)
-                .containerBackground(.fill.tertiary, for: .widget)
-        }
+        AppIntentConfiguration(
+            kind: kind,
+            intent: ConfigurationAppIntent.self,
+            provider: Provider(),
+            content: { entry in
+                LifendWidgetEntryView(entry: entry)
+                    .containerBackground(.fill.tertiary, for: .widget)
+            }
+        ).configurationDisplayName("LifendWidget")
+        .description("Select your favorite emoji")
+        .supportedFamilies([.systemSmall])
     }
 }
 
